@@ -1,0 +1,34 @@
+name: Build All Platforms
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        arch: [x86_64]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up CMake
+        uses: lukka/get-cmake@v3
+
+      - name: Build
+        run: |
+          mkdir -p build && cd build
+          cmake ..
+          make
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: lottie2gif-${{ matrix.os }}-${{ matrix.arch }}
+          path: build/output/lottie2gif
