@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: |
           mkdir -p build && cd build
-          cmake -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} ..
+          cmake -DBUILD_SHARED_LIBS=OFF -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} ..
           make
 
       - name: Upload artifacts
