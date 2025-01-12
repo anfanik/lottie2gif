@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lottie2gif-${{ matrix.os }}-${{ matrix.arch }}
-          path: build/output/lottie2gif
+          path: output/lottie2gif
