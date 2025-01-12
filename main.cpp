@@ -85,8 +85,8 @@ public:
         auto buffer = std::unique_ptr<uint32_t[]>(new uint32_t[w * h]);
         size_t frameCount = player->totalFrame();
 
-        //limit to 20fps
-        uint32_t n = player->frameRate() / 20.0;
+        //limit to 60fps
+        uint32_t n = player->frameRate() / 60.0;
         
         GifBuilder builder(gifName.data(), w, h, bgColor);
         for (size_t i = 0; i < frameCount ; i+=n) {
